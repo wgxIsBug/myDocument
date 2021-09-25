@@ -1,8 +1,6 @@
 ---
-title: any
+title: any 其中是否包含
 tags: array,beginner
-firstSeen: 2018-02-14T11:46:15+02:00
-lastUpdated: 2020-10-18T20:24:28+03:00
 ---
 
 Checks if the provided predicate function returns `true` for at least one element in a collection.
@@ -18,3 +16,24 @@ const any = (arr, fn = Boolean) => arr.some(fn);
 any([0, 1, 2, 0], x => x >= 2); // true
 any([0, 0, 1, 0]); // true 
 ```
+
+---
+title: allUniqueBy
+tags: array,intermediate
+---
+
+Checks if all elements in an array are unique, based on the provided mapping function.
+
+- Use `Array.prototype.map()` to apply `fn` to all elements in `arr`.
+- Create a new `Set` from the mapped values to keep only unique occurrences.
+- Use `Array.prototype.length` and `Set.prototype.size` to compare the length of the unique mapped values to the original array.
+
+```js
+const allUniqueBy = (arr, fn) => arr.length === new Set(arr.map(fn)).size;
+```
+
+```js
+allUniqueBy([1.2, 2.4, 2.9], Math.round); // true
+allUniqueBy([1.2, 2.3, 2.4], Math.round); // false
+```
+
